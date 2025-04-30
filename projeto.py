@@ -1,4 +1,7 @@
-peso = float(input("digite seu peso em KG:"))
-altura = float (input("digite sua altura em metros: "))
-imc = peso/ (altura * altura)
-print ("seu IMC é:", round(imc, 2))
+def main():
+    
+    print("=== Calculadora de IMC ===")
+
+    peso = obter_valor_numerico("Digite seu peso (em kg): ")
+    altura = obter_valor_numerico("Digite sua altura (em metros): ")
+    imc = calcular_imc(peso, altura)
