@@ -1,6 +1,6 @@
 #calculadora imc jeofton 
- print("=== Calculadora de IMC ===")
- while True :
+print("=== Calculadora de IMC ===")
+while True :
   peso = float(input("Digite seu peso em KG "))
   altura = float(input("Digite sua altura em metros "))
   imc = peso/(altura*altura)
@@ -9,6 +9,3 @@
   if repetir != "s" :
      print("Encerrando a aplicaçao, ate mais")
      break
-
-
-
