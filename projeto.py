@@ -1,4 +1,4 @@
-#calculadora imc
+#calculadora imc jeofton 
 print("=== Calculadora de IMC ===")
 while True :
  peso = float(input("Digite seu peso em KG "))
