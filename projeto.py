@@ -34,7 +34,7 @@ while True:
     except ValueError:
         print("Por favor, digite um número válido.")
         continue
-     repetir = input("Deseja calcular novamente? S/N  ")
+    repetir = input("Deseja calcular novamente? S/N  ")
     if repetir.lower() != "s":
         print("Encerrando a aplicação, até mais")
         break
