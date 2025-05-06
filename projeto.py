@@ -19,11 +19,21 @@ while True:
             print("Classificação: Obesidade grau 2")
         else:
             print("Classificação: Obesidade grau 3")
+            peso_min = 18.5 * altura ** 2
+        peso_max = 24.9 * altura ** 2
+       
+        if peso < peso_min:
+            diferenca = peso_min - peso
+            print(f"Você precisa ganhar aproximadamente {diferenca:.2f} kg para atingir um IMC normal.")
+        elif peso > peso_max:
+            diferenca = peso - peso_max
+            print(f"Você precisa perder aproximadamente {diferenca:.2f} kg para atingir um IMC normal.")
+        else:
+            print("Você já está dentro do intervalo de peso ideal.")
     except ValueError:
         print("Por favor, digite um número válido.")
         continue
-    
-    repetir = input("Deseja calcular novamente? S/N  ")
+     repetir = input("Deseja calcular novamente? S/N  ")
     if repetir.lower() != "s":
         print("Encerrando a aplicação, até mais")
         break
