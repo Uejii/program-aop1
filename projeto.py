@@ -19,8 +19,9 @@ while True:
             print("Classificação: Obesidade grau 2")
         else:
             print("Classificação: Obesidade grau 3")
+            
             peso_min = 18.5 * altura ** 2
-        peso_max = 24.9 * altura ** 2
+            peso_max = 24.9 * altura ** 2
        
         if peso < peso_min:
             diferenca = peso_min - peso
