@@ -1,43 +1,74 @@
-#calculadora imc jeofton 
-print("=== Calculadora de IMC ===")
-while True:
+import tkinter as tk
+from tkinter import messagebox
+
+def calcular():
     try:
-        peso = float(input("Digite seu peso em KG "))
-        altura = float(input("Digite sua altura em metros "))
+        global peso, altura, imc, peso_min, peso_max, diferenca
+        
+        peso = float(entry_peso.get())
+        altura = float(entry_altura.get())
         imc = peso / (altura * altura)
-        print("Seu IMC é:", round(imc, 2))
         peso_min = 18.5 * altura ** 2
         peso_max = 24.9 * altura ** 2 
+
+        resultado = f"Seu IMC é: {round(imc, 2)}\n"
+
         if imc < 18.5:
-            print("Classificação: Abaixo do peso")
-            print("Média de consumo calórico: ~2.200 kcal/dia")
+            resultado += "Classificação: Abaixo do peso\nMédia de consumo calórico: ~2.200 kcal/dia"
         elif imc < 25:
-            print("Classificação: Peso normal")
-            print("Média de consumo calórico: ~2.500 kcal/dia")
+            resultado += "Classificação: Peso normal\nMédia de consumo calórico: ~2.500 kcal/dia"
         elif imc < 30:
-            print("Classificação: Sobrepeso")
-            print("Média de consumo calórico: ~2.800 kcal/dia")
+            resultado += "Classificação: Sobrepeso\nMédia de consumo calórico: ~2.800 kcal/dia"
         elif imc < 35:
-            print("Classificação: Obesidade grau 1")
-            print("Média de consumo calórico: ~3.000 kcal/dia")
+            resultado += "Classificação: Obesidade grau 1\nMédia de consumo calórico: ~3.000 kcal/dia"
         elif imc < 40:
-            print("Classificação: Obesidade grau 2")
-            print("Média de consumo calórico: ~3.200 kcal/dia")
+            resultado += "Classificação: Obesidade grau 2\nMédia de consumo calórico: ~3.200 kcal/dia"
         else:
-            print("Classificação: Obesidade grau 3")
-            print("Média de consumo calórico: ~3.500 kcal/dia")
+            resultado += "Classificação: Obesidade grau 3\nMédia de consumo calórico: ~3.500 kcal/dia"
+
         if peso < peso_min:
             diferenca = peso_min - peso
-            print(f"Você precisa ganhar aproximadamente {diferenca:.2f} kg para atingir um IMC normal.")
+            resultado += f"\nVocê precisa ganhar aproximadamente {diferenca:.2f} kg para atingir um IMC normal."
         elif peso > peso_max:
             diferenca = peso - peso_max
-            print(f"Você precisa perder aproximadamente {diferenca:.2f} kg para atingir um IMC normal.")
+            resultado += f"\nVocê precisa perder aproximadamente {diferenca:.2f} kg para atingir um IMC normal."
         else:
-            print("Você já está dentro do intervalo de peso ideal.")
+            resultado += "\nVocê já está dentro do intervalo de peso ideal."
+
+        messagebox.showinfo("Resultado", resultado)
+    
     except ValueError:
-        print("Por favor, digite um número válido.")
-        continue
-    repetir = input("Deseja calcular novamente? S/N  ")
-    if repetir.lower() != "s":
-        print("Encerrando a aplicação, até mais")
-        break
+        messagebox.showerror("Erro", "Por favor, digite um número válido.")
+
+def novo_calculo():
+    entry_peso.delete(0, tk.END)
+    entry_altura.delete(0, tk.END)
+
+# Interface gráfica
+janela = tk.Tk()
+janela.title("Calculadora de IMC")
+janela.geometry("400x320")
+janela.configure(bg="#e8f0fe")
+
+tk.Label(janela, text="Calculadora de IMC", font=("Helvetica", 16, "bold"), bg="#e8f0fe").pack(pady=10)
+
+frame = tk.Frame(janela, bg="#e8f0fe")
+frame.pack(pady=10)
+
+tk.Label(frame, text="Digite seu peso em KG:", font=("Helvetica", 12), bg="#e8f0fe").grid(row=0, column=0, sticky="e", padx=5, pady=5)
+entry_peso = tk.Entry(frame, font=("Helvetica", 12))
+entry_peso.grid(row=0, column=1, padx=5, pady=5)
+
+tk.Label(frame, text="Digite sua altura em metros:", font=("Helvetica", 12), bg="#e8f0fe").grid(row=1, column=0, sticky="e", padx=5, pady=5)
+entry_altura = tk.Entry(frame, font=("Helvetica", 12))
+entry_altura.grid(row=1, column=1, padx=5, pady=5)
+
+frame_botoes = tk.Frame(janela, bg="#e8f0fe")
+frame_botoes.pack(pady=15)
+
+tk.Button(frame_botoes, text="Calcular", font=("Helvetica", 12, "bold"), bg="#4CAF50", fg="white", command=calcular).grid(row=0, column=0, padx=10)
+tk.Button(frame_botoes, text="Novo cálculo", font=("Helvetica", 12), bg="#f44336", fg="white", command=novo_calculo).grid(row=0, column=1, padx=10)
+
+tk.Label(janela, text="Feito por Weslley e Julia", font=("Helvetica", 9), bg="#e8f0fe", fg="gray").pack(side="bottom", pady=5)
+
+janela.mainloop()
