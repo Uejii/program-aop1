@@ -1,0 +1,22 @@
+═══════════════════════════════════════════════════════
+  SISTEMA DE ACADEMIA - COMO RODAR
+═══════════════════════════════════════════════════════
+
+1. BACKEND (Terminal 1):
+   cd backend
+   php -S localhost:8000
+
+2. FRONTEND (Terminal 2):
+   cd frontend
+   npm install    (só na primeira vez)
+   npm start
+
+3. ACESSAR:
+   http://localhost:3000
+
+4. LOGIN:
+   Email: admin@academia.com
+   Senha: admin123
+
+═══════════════════════════════════════════════════════
+
